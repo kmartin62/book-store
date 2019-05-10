@@ -108,7 +108,7 @@ public class User implements UserDetails, Serializable {
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
