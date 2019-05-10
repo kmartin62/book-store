@@ -2,7 +2,6 @@ package bookstoreapi.bookstoreapi.config;
 
 import bookstoreapi.bookstoreapi.service.UserSecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -18,11 +17,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private Environment env;
+    private final Environment env;
+
+    private final UserSecurityService userSecurityService;
 
     @Autowired
-    private UserSecurityService userSecurityService;
+    public SecurityConfig(Environment env, UserSecurityService userSecurityService) {
+        this.env = env;
+        this.userSecurityService = userSecurityService;
+    }
 
     private BCryptPasswordEncoder passwordEncoder() {
         return SecurityUtility.passwordEncoder();
