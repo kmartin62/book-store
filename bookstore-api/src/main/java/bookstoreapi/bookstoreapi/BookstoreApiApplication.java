@@ -34,10 +34,9 @@ public class BookstoreApiApplication implements CommandLineRunner{
         user.setUsername("admin");
         user.setPassword(SecurityUtility.passwordEncoder().encode("p"));
         user.setEmail("testuser@gmail.com");
-
         Set<UserRole> userRoles = new HashSet<>();
         Role role = new Role();
-        role.setRoleId(0);
+        role.setRoleId(1);
         role.setName("ROLE_ADMIN");
         userRoles.add(new UserRole(user, role));
 
@@ -52,7 +51,7 @@ public class BookstoreApiApplication implements CommandLineRunner{
         user1.setPassword(SecurityUtility.passwordEncoder().encode("p"));
         user1.setEmail("zika193@gmail.com");
         Role role1 = new Role();
-        role1.setRoleId(1);
+        role1.setRoleId(2);
         role1.setName("ROLE_USER");
         userRoles.add(new UserRole(user1, role1));
 
