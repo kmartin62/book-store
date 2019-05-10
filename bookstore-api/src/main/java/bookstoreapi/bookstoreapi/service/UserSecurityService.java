@@ -17,7 +17,6 @@ import java.util.logging.Logger;
 @Service
 public class UserSecurityService implements UserDetailsService {
 
-    private static final Logger LOGGER = (Logger) LoggerFactory.getLogger(UserSecurityService.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -27,7 +26,6 @@ public class UserSecurityService implements UserDetailsService {
         User user = userRepository.findByUsername(username);
 
         if(user == null){
-            LOGGER.warning("Username not found");
             throw new UsernameNotFoundException("Username not found");
         }
         return user;

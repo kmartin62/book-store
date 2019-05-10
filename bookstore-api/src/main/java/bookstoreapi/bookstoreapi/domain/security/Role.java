@@ -1,7 +1,6 @@
 package bookstoreapi.bookstoreapi.domain.security;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,10 +15,13 @@ public class Role implements Serializable {
     private static final long serialUID = 556655L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int roleId;
 
     private String name;
 
+    @ElementCollection
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<UserRole> userRoleSet = new HashSet<>();
 
     public Role(){}
