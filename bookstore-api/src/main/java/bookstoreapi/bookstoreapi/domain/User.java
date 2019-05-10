@@ -113,7 +113,7 @@ public class User implements UserDetails, Serializable {
 
     @Override
     public String getUsername() {
-        return null;
+        return this.username;
     }
 
     @Override
