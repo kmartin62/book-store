@@ -10,12 +10,16 @@
           </mat-form-field>
 
           <mat-form-field class="full-width">
-            <input type="text" matInput [(ngModel)]="credential.password" name="password" id="password"
+            <input type="password" matInput [(ngModel)]="credential.password" name="password" id="password"
             placeholder="Password">
           </mat-form-field>
           <button mat-raised-button type="submit" class="mat-primary">Login</button>
         </form>
       </mat-grid-tile>
     </mat-grid-list>
+  </div>
+  <div>
+    <div *ngIf="isLoggedIn">
+      <h2>Успешно се логиравте..</h2>
   </div>
 </div>

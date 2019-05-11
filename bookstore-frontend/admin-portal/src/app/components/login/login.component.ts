@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
         console.log(res);
         localStorage.setItem("xAuthToken", res.json().token);
         this.isLoggedIn = true;
-        location.reload();
+        // location.reload();
       },
       err => {
         console.log(err);

@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class RequestFilter {
+public class RequestFilter implements Filter{
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain){
         HttpServletRequest req = (HttpServletRequest) request;
