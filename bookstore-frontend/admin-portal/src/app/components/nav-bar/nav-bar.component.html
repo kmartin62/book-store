@@ -2,7 +2,7 @@
   <h3 [style.color] = "'white'">АДМИН ПОРТАЛ</h3>
   <span class="admin-links"></span>
 
-  <div *ngIf="!isLoggedIn">
+  <div *ngIf="isLoggedIn">
     <a mat-button>Листа со книги</a>
     <a mat-button>Додај книги</a>
     <a mat-button>Log off</a>
@@ -10,4 +10,4 @@
 </mat-toolbar>
 <!-- <button (click)="toggleDisplay()">Click me</button> -->
 
-<button mat-raised-button class="mat-primary" (click)="toggleDisplay()">Toggle</button>
+<!-- <button mat-raised-button class="mat-primary" (click)="toggleDisplay()">Toggle</button> -->
