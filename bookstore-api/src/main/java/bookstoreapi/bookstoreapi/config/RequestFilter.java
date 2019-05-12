@@ -16,32 +16,29 @@ import java.io.IOException;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class RequestFilter implements Filter{
 
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain){
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) {
+        HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletResponse response = (HttpServletResponse) res;
 
-        res.setHeader("Access-Control-Allow-Origin", "*");
-        res.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
-        res.setHeader("Access-Control-Allow-Headers", "x-requested-with, x-auth-token");
-        res.setHeader("Access-Control-Max-Age", "3600");
-        res.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with, x-auth-token");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
 
-        if(!(req.getMethod().equalsIgnoreCase("OPTIONS"))) {
-            try{
-                filterChain.doFilter(request, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+        if(!(request.getMethod().equalsIgnoreCase("OPTIONS"))) {
+            try {
+                chain.doFilter(req, res);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else {
-            res.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE");
-            res.setHeader("Access-Control-Max-Age", "3600");
-            res.setHeader("Access-Control-Allow-Headers", "authorization, content-type, x-auth-token" +
-                    "access-control-request-headers, access-control-request-method, accept, origin, authorization, " +
-                    "x-requested-with");
-            res.setStatus(HttpServletResponse.SC_OK);
+        } else {
+            System.out.println("Pre-fight");
+            response.setHeader("Access-Control-Allowed-Methods", "POST, GET, DELETE");
+            response.setHeader("Access-Control-Max-Age", "3600");
+            response.setHeader("Access-Control-Allow-Headers", "authorization, content-type, x-auth-token, " +
+                    "access-control-request-headers,access-control-request-method,accept,origin,authorization,x-requested-with");
+            response.setStatus(HttpServletResponse.SC_OK);
         }
     }
 

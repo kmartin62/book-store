@@ -19,7 +19,17 @@ export class LoginService {
     });
 
     return this.http.get(url, {headers: headers});
-
-
   }
+
+  checkSession(){
+    let url = "http://localhost:8080/checkSession";
+    console.log("I'm in");
+    console.log(localStorage.getItem('xAuthToken'));
+    let headers = new Headers ({
+      'x-auth-token' : localStorage.getItem('xAuthToken')
+    });
+
+    return this.http.get(url, {headers: headers});
+  }
+
 }

@@ -2,6 +2,9 @@ package bookstoreapi.bookstoreapi.controller;
 
 import bookstoreapi.bookstoreapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +17,7 @@ import java.util.Map;
 /**
  * Created by @kmartin62
  */
+@CrossOrigin({"*"})
 @RestController
 public class LoginController {
 
@@ -36,4 +40,9 @@ public class LoginController {
 
         return Collections.singletonMap("token", session.getId());
     }
+
+    @RequestMapping("/checkSession")
+    public ResponseEntity checkSession(){
+        return new ResponseEntity("Session Active!", HttpStatus.OK);
+    }  
 }
