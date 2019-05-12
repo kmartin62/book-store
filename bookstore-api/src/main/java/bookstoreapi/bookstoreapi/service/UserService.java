@@ -1,7 +1,7 @@
 package bookstoreapi.bookstoreapi.service;
 
-import bookstoreapi.bookstoreapi.domain.User;
-import bookstoreapi.bookstoreapi.domain.security.UserRole;
+import bookstoreapi.bookstoreapi.model.User;
+import bookstoreapi.bookstoreapi.model.security.UserRole;
 
 import java.util.Set;
 

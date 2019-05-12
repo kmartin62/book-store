@@ -1,4 +1,4 @@
-package bookstoreapi.bookstoreapi.domain.security;
+package bookstoreapi.bookstoreapi.model.security;
 
 import org.springframework.security.core.GrantedAuthority;
 

@@ -1,4 +1,4 @@
-package bookstoreapi.bookstoreapi.domain.security;
+package bookstoreapi.bookstoreapi.model.security;
 
 import javax.persistence.*;
 import java.io.Serializable;

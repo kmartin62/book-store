@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../service/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,7 +11,7 @@ export class NavBarComponent implements OnInit {
 
   private isLoggedIn = false;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   toggleDisplay(){
     this.isLoggedIn = !this.isLoggedIn;
@@ -25,6 +26,8 @@ logout(){
       console.log(err);
     }
   );
+
+  this.router.navigate(['/']);
 }
 
   ngOnInit() {

@@ -1,7 +1,6 @@
-package bookstoreapi.bookstoreapi.domain.security;
+package bookstoreapi.bookstoreapi.model.security;
 
-import bookstoreapi.bookstoreapi.domain.User;
-import bookstoreapi.bookstoreapi.domain.security.Role;
+import bookstoreapi.bookstoreapi.model.User;
 
 import javax.persistence.*;
 import java.io.Serializable;

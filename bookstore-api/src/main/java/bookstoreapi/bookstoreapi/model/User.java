@@ -1,7 +1,7 @@
-package bookstoreapi.bookstoreapi.domain;
+package bookstoreapi.bookstoreapi.model;
 
-import bookstoreapi.bookstoreapi.domain.security.Authority;
-import bookstoreapi.bookstoreapi.domain.security.UserRole;
+import bookstoreapi.bookstoreapi.model.security.Authority;
+import bookstoreapi.bookstoreapi.model.security.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

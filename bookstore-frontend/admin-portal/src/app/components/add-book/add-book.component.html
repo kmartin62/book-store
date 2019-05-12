@@ -1,6 +1,6 @@
 <div class="container">
-  <!-- <div *ngIf="bookAdded"> -->
-    <div>
+  <div *ngIf="!bookAdded">
+    <!-- <div> -->
     <h3 style="margin-top: 30px; ">New book information<span style="font-size:small">
     * is required field</span></h3>
 
@@ -117,6 +117,18 @@
 			Image &nbsp;
 			<input id="title" type="file" id="bookImage" name="bookImage" (change)="uploadImageService.fileChangeEvent($event)">
 			<br><br>
+
+      <mat-grid-list cols="20" rowHeight="60px">
+				<mat-grid-tile [colspan]="2" [rowspan]="1">
+						<button class="mat-primary" mat-raised-button type="submit">Add Book</button>
+				</mat-grid-tile>
+				<mat-grid-tile [colspan]="2" [rowspan]="1">
+					<a class="mat-warn" mat-raised-button routerLink="/">Cancel</a>
+				</mat-grid-tile>
+			</mat-grid-list>
     </form>
   </div>
+  <div class="row" *ngIf="bookAdded">
+		<h3>Book added successfully!</h3>
+	</div>
 </div>

@@ -1,6 +1,6 @@
 package bookstoreapi.bookstoreapi.service;
 
-import bookstoreapi.bookstoreapi.domain.User;
+import bookstoreapi.bookstoreapi.model.User;
 import bookstoreapi.bookstoreapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

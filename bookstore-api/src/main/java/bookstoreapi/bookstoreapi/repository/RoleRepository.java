@@ -1,6 +1,6 @@
 package bookstoreapi.bookstoreapi.repository;
 
-import bookstoreapi.bookstoreapi.domain.security.Role;
+import bookstoreapi.bookstoreapi.model.security.Role;
 import org.springframework.data.repository.CrudRepository;
 
 /**

@@ -1,9 +1,9 @@
 package bookstoreapi.bookstoreapi;
 
 import bookstoreapi.bookstoreapi.config.SecurityUtility;
-import bookstoreapi.bookstoreapi.domain.User;
-import bookstoreapi.bookstoreapi.domain.security.Role;
-import bookstoreapi.bookstoreapi.domain.security.UserRole;
+import bookstoreapi.bookstoreapi.model.User;
+import bookstoreapi.bookstoreapi.model.security.Role;
+import bookstoreapi.bookstoreapi.model.security.UserRole;
 import bookstoreapi.bookstoreapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
