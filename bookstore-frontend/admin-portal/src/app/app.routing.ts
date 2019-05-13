@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { BookListComponent } from './components/book-list/book-list.component';
+import { ViewBookComponent } from './components/view-book/view-book.component';
 
 
 const appRoutes: Routes = [
@@ -22,6 +23,10 @@ const appRoutes: Routes = [
   {
     path: 'getAll',
     component: BookListComponent
+  },
+  {
+    path: 'viewBook/:id',
+    component: ViewBookComponent
   }
 ];
 

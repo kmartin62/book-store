@@ -2,7 +2,6 @@ package bookstoreapi.bookstoreapi.controller;
 
 import bookstoreapi.bookstoreapi.model.Book;
 import bookstoreapi.bookstoreapi.service.BookService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -62,5 +61,11 @@ public class BookController {
     @RequestMapping(value = "/getAll")
     public List<Book> getAll(){
         return bookService.findAll();
+    }
+
+    @RequestMapping("{id}")
+    public Optional<Book> getBook(@PathVariable("id") Long id){
+        Optional<Book> book = bookService.findById(id);
+        return book;
     }
 }

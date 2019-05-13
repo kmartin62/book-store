@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatListModule} from '@angular/material/list';
 
 import 'hammerjs';
 
@@ -19,12 +20,14 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { LoginComponent } from './components/login/login.component';
 import { AddBookComponent } from './components/add-book/add-book.component'
 import { BookListComponent } from './components/book-list/book-list.component';
+import { ViewBookComponent } from './components/view-book/view-book.component';
 
 import { LoginService } from './service/login.service';
 import { AddBookService } from './service/add-book.service';
 import { UploadImageService } from './service/upload-image.service';
 import { GetBookListService } from './service/get-book-list.service';
-import { ViewBookComponent } from './components/view-book/view-book.component';
+import { GetBookService } from './service/get-book.service';
+
 
 
 @NgModule({
@@ -48,13 +51,15 @@ import { ViewBookComponent } from './components/view-book/view-book.component';
     MatInputModule,
     FormsModule,
     MatSelectModule,
+    MatListModule,
     routing
   ],
   providers: [
     LoginService,
     AddBookService,
     UploadImageService,
-    GetBookListService
+    GetBookListService,
+    GetBookService
   ],
   bootstrap: [AppComponent]
 })
