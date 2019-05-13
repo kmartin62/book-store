@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -58,14 +60,49 @@ public class BookController {
         }
     }
 
+    @RequestMapping(value = "/update/image", method = RequestMethod.POST)
+    public ResponseEntity updateImage(@RequestParam("id") Long id, HttpServletResponse response, HttpServletRequest request){
+        try {
+            Optional<Book> book = bookService.findById(id);
+            MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+            Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+            MultipartFile multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+            String fileName = id+".png";
+
+            Files.delete(Paths.get("src/main/resources/static/image/book/"+fileName));
+
+            byte[] bytes = multipartFile.getBytes();
+            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static/image/book/"+fileName)));
+            stream.write(bytes);
+            stream.close();
+
+            return new ResponseEntity("Upload success", HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            return new ResponseEntity("upload failed", HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @RequestMapping(value = "/getAll")
     public List<Book> getAll(){
         return bookService.findAll();
+    }
+
+    @RequestMapping(value = "/remove", method = RequestMethod.POST)
+    public ResponseEntity remove(@RequestBody String id){
+        bookService.removeById(Long.parseLong(id));
+
+        return new ResponseEntity("Successful", HttpStatus.OK);
     }
 
     @RequestMapping("{id}")
     public Optional<Book> getBook(@PathVariable("id") Long id){
         Optional<Book> book = bookService.findById(id);
         return book;
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public Book updateBook(@RequestBody Book book) {
+        return bookService.save(book);
     }
 }
