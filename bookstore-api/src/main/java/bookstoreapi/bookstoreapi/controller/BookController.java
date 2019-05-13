@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Iterator;
@@ -96,8 +97,11 @@ public class BookController {
     }
 
     @RequestMapping("{id}")
-    public Optional<Book> getBook(@PathVariable("id") Long id){
+    public Optional<Book> getBook(@PathVariable("id") Long id) throws IOException {
         Optional<Book> book = bookService.findById(id);
+        String fileName = id+".png";
+
+        Files.delete(Paths.get("src/main/resources/static/image/book/"+fileName));
         return book;
     }
 

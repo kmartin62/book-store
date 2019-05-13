@@ -71,6 +71,7 @@ import { RemoveBookService } from './service/remove-book.service';
     EditBookService,
     RemoveBookService
   ],
-  bootstrap: [AppComponent, DialogResultExampleDialog]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogResultExampleDialog],
 })
 export class AppModule { }

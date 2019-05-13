@@ -50,6 +50,58 @@ export class BookListComponent implements OnInit {
     );
   }
 
+  updateRemoveBookList(checked: boolean, book: Book) {
+    if(checked){
+      this.removeBookList.push(book);
+    } else {
+      this.removeBookList.splice(this.removeBookList.indexOf(book), 1);
+    }
+  }
+
+  updateSelected(checked:boolean) {
+    if(checked){
+      this.allChecked = true;
+      this.removeBookList = this.bookList.slice();
+    } else {
+      this.allChecked = false;
+      this.removeBookList = [];
+    }
+  }
+
+  removeSelectedBooks(){
+    let dialogRef = this.dialog.open(DialogResultExampleDialog);
+    dialogRef.afterClosed().subscribe(
+      res => {
+          console.log(res);
+          if(res == "yes") {
+            for(let book of this.removeBookList) {
+              this.removeBookService.sendBook(book.id).subscribe(
+                res => {
+                  location.reload();
+                },
+                err => {
+                  console.log(err);
+                }
+              );
+              }
+              this.getBookListService.getBookList().subscribe(
+                res => {
+                  console.log(res.json());
+                  this.bookList = res.json();
+                },
+                err => {
+                  console.log(err);
+                }
+              );
+              // location.reload();
+            }
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
   ngOnInit() {
     this.getBookListService.getBookList().subscribe(
       res => {
