@@ -18,10 +18,13 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { LoginComponent } from './components/login/login.component';
 import { AddBookComponent } from './components/add-book/add-book.component'
+import { BookListComponent } from './components/book-list/book-list.component';
 
 import { LoginService } from './service/login.service';
 import { AddBookService } from './service/add-book.service';
 import { UploadImageService } from './service/upload-image.service';
+import { GetBookListService } from './service/get-book-list.service';
+import { ViewBookComponent } from './components/view-book/view-book.component';
 
 
 @NgModule({
@@ -29,7 +32,9 @@ import { UploadImageService } from './service/upload-image.service';
     AppComponent,
     NavBarComponent,
     LoginComponent,
-    AddBookComponent
+    AddBookComponent,
+    BookListComponent,
+    ViewBookComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,8 @@ import { UploadImageService } from './service/upload-image.service';
   providers: [
     LoginService,
     AddBookService,
-    UploadImageService
+    UploadImageService,
+    GetBookListService
   ],
   bootstrap: [AppComponent]
 })

@@ -16,6 +16,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -56,5 +57,10 @@ public class BookController {
             e.printStackTrace();
             return new ResponseEntity("upload failed", HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @RequestMapping(value = "/getAll")
+    public List<Book> getAll(){
+        return bookService.findAll();
     }
 }

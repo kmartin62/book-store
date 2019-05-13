@@ -3,7 +3,7 @@
   <span class="admin-links"></span>
 
   <div *ngIf="isLoggedIn">
-    <a mat-button>Листа со книги</a>
+    <a mat-button routerLink="/getAll">Листа со книги</a>
     <a mat-button routerLink="/addBook">Додај книги</a>
     <a mat-button (click)="logout()">Log off</a>
 </div>
