@@ -1,5 +1,6 @@
 package bookstoreapi.bookstoreapi.service.impl;
 
+import java.util.Optional;
 import java.util.Set;
 
 import bookstoreapi.bookstoreapi.model.User;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService {
 
     private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
@@ -46,5 +47,25 @@ public class UserServiceImpl implements UserService {
         }
 
         return user1;
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User save(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
     }
 }

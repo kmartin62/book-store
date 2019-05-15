@@ -11,10 +11,11 @@ export class UserService {
 
   constructor(private http: Http) { }
 
-  newUser(username: string, email: string){
-    let url = this.serverPath+'/newUser';
+  newUser(username: string, password: string, email: string){
+    let url = this.serverPath+'/user/newUser';
     let user = {
       "username" : username,
+      "password" : password,
       "email" : email
     };
 
@@ -27,7 +28,7 @@ export class UserService {
   }
 
   retrievePassword(email: string){
-    let url = this.serverPath+'/forgetPassword';
+    let url = this.serverPath+'/user/forgetPassword';
     let user = {
       "email" : email
     };

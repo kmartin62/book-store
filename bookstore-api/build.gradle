@@ -19,6 +19,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.session:spring-session-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'javax.xml.bind:jaxb-api:2.3.0'
     compile 'redis.clients:jedis:2.9.0'
     compile 'org.springframework.boot:spring-boot-starter-data-redis'
 //    compile 'biz.paluch.redis:lettuce:3.5.0.Final'

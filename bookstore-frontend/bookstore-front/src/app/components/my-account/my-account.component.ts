@@ -15,6 +15,7 @@ export class MyAccountComponent implements OnInit {
   private loginError: boolean = false;
   private loggedIn: boolean = false;
   private credential = {'username':'', 'password': ''};
+  private password: string;
 
   private emailSent: boolean = false;
   private usernameExists: boolean;
@@ -36,7 +37,8 @@ export class MyAccountComponent implements OnInit {
         localStorage.setItem("xAuthToken", res.json().token);
         this.loggedIn = true;
         location.reload();
-        this.router.navigate(['/home']);
+        this.router.navigate(['/', 'home']);
+        // location.reload();
       },
       err => {
         console.log(err);
@@ -51,9 +53,10 @@ export class MyAccountComponent implements OnInit {
     this.emailExists = false;
     this.emailSent = false;
 
-    this.userService.newUser(this.username, this.email).subscribe(
+    this.userService.newUser(this.username, this.password, this.email).subscribe(
       res => {
         this.emailSent = true;
+        location.reload();
       },
       err => {
         console.log(err.text());
