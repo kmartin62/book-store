@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { AlertModule } from 'ngx-bootstrap';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import 'hammerjs';
 
@@ -18,6 +19,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { MyAccountComponent } from './components/my-account/my-account.component
     AppComponent,
     HomeComponent,
     NavBarComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { MyAccountComponent } from './components/my-account/my-account.component
     FormsModule,
     AlertModule.forRoot(),
     MatTabsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     LoginService,

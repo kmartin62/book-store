@@ -19,6 +19,6 @@ public interface UserService {
 
     User save(User user);
 
-    Optional<User> findById(Long id);
+    Optional<User> findById(Long id) throws Exception;
 
 }

@@ -57,20 +57,6 @@
 									</form>
 								</div>
 							</mat-tab>
-							<mat-tab label="Заборавена лозинка">
-								<div style="margin-top: 20px;">
-									<div class="alert alert-info" *ngIf="emailNotExists">E-mail адресата на постои.</div>
-									<div class="alert alert-success" *ngIf="forgetPasswordEmailSent">Email sent.</div>
-									<form (ngSubmit)="onForgetPassword()">
-										<div class="form-group">
-											<label for="recoverEmail">Вашата e-mail адреса *</label>
-											<input type="email" class="form-control" id="recoverEmail" name="recoverEmail" [(ngModel)]="recoverEmail" required="required" >
-											<p style="color:#828282;">Внесете ја вашата e-mail адреса.</p>
-										</div>
-										<button mat-raised-button type="submit" class="mat-primary">Submit</button>
-									</form>
-								</div>
-							</mat-tab>
 						</mat-tab-group>
 					</div>
 				</div>

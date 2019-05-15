@@ -11,6 +11,25 @@ export class UserService {
 
   constructor(private http: Http) { }
 
+  updateUserInfo(user: User, newPassword: string) {
+    let url = this.serverPath + "/user/updateUserInfo";
+    let userInfo = {
+      "id" : user.id,
+      "firstName" : user.firstName,
+      "lastName" : user.lastName,
+      "username" : user.username,
+      "currentPassword" : user.password,
+      "email" : user.email,
+      "newPassword" : "newPassword"
+    };
+
+    let tokenHeader = new Headers({
+      'Content-Type' : 'application/json',
+      'x-auth-token' : localStorage.getItem("xAuthToken")
+    });
+    return this.http.post(url, JSON.stringify(userInfo), {headers:tokenHeader});
+  }
+
   newUser(username: string, password: string, email: string){
     let url = this.serverPath+'/user/newUser';
     let user = {
@@ -27,19 +46,15 @@ export class UserService {
     return this.http.post(url, JSON.stringify(user), {headers: tokenHeader});
   }
 
-  retrievePassword(email: string){
-    let url = this.serverPath+'/user/forgetPassword';
-    let user = {
-      "email" : email
-    };
+  getCurrentUser() {
+    let url = this.serverPath+'/user/getCurrentUser';
 
     let tokenHeader = new Headers({
       'Content-Type' : 'application/json',
       'x-auth-token' : localStorage.getItem('xAuthToken')
     });
 
-    return this.http.post(url, JSON.stringify(user), {headers: tokenHeader});
+    return this.http.get(url, {headers : tokenHeader});
   }
-
 
 }

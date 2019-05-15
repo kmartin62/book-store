@@ -1,0 +1,84 @@
+<div class="container">
+	<hr style="position: absolute;width:85%; height:6px; background-color: #333; z-index:-1; margin-top: -170px;" />
+
+	<div *ngIf = "dataFetched" style="margin-top: 50px;">
+		<div class="row">
+			<div class="col-mat-2 col-mat-offset-5">
+				<mat-spinner></mat-spinner>
+			</div>
+		</div>
+	</div>
+
+	<div class="row" style="margin-top:30px;">
+		<div class="col-sm-3"></div>
+		<div *ngIf="!dataFetched">
+			<div class="col-sm-9">
+				<div class="panel-group">
+					<div class="panel panel-default" style="border:none;">
+						<div class="panel-body" style="background-color: #ededed; margin-top: 20px;">
+							<mat-tab-group [selectedIndex]="selectedProfileTab">
+								<mat-tab label="Edit">
+									<div style="margin-top: 20px;">
+										<div class="alert alert-danger" *ngIf="incorrectPassword">
+										<strong>Неточна лозинка!</strong>
+										</div>
+										<div class="alert alert-success" *ngIf="updateSuccess">
+										<strong>Успешно!</strong>
+										</div>
+									</div>
+									<form (ngSubmit)="onUpdateUserInfo()">
+										<input type="hidden" name="id" [(ngModel)]="user.id" />
+										<div class="bg-info" *ngIf="updateUserInfo">Успешно.</div>
+										<div class="form-group">
+											<div class="row">
+												<div class="col-sm-6">
+													<label for="firstName">Име</label>
+													<input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="user.firstName" />
+												</div>
+												<div class="col-sm-6">
+													<label for="lastName">Презиме</label>
+													<input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="user.lastName" />
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="username">
+												Корисничко име *
+											</label>&nbsp;<span *ngIf="usernameExists" style="color:red">Корисничкото име веќе постои.</span>
+											<input required="required" type="text" class="form-control" id="username" name="username" [(ngModel)]="user.username" />
+										</div>
+										<div class="form-group">
+											<label for="currentPassword">
+												Моментална лозинка
+											</label>
+											<input type="password" class="form-control" id="password" name="password" [(ngModel)]="currentPassword" />
+										</div>
+										<div class="form-group">
+											<label for="email">
+												Email адреса *
+											</label>&nbsp;<span *ngIf="emailExists" style="color:red">Email адресата веќе постои.</span>
+											<input required="required" type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" />
+										</div>
+										<div class="form-group">
+											<label for="txtNewPassword">
+												Нова лозинка *
+											</label>&nbsp;<span id="checkPasswordMatch" style="color:red;"></span>
+											<input type="password" class="form-control" id="txtNewPassword" name="txtNewPassword" [(ngModel)]="newPassword" />
+										</div>
+										<div class="form-group">
+											<label for="txtConfirmPassword">
+												Потврди ја новата лозинка *
+											</label>
+											<input type="password" class="form-control" id="txtConfirmPassword" name="txtNewPassword"  />
+										</div>
+										<button mat-raised-button type="submit" class="mat-primary" id="udpateuserInfoButton">Save</button>
+									</form>
+								</mat-tab>
+							</mat-tab-group>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
