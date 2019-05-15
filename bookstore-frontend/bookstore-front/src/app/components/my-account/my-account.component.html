@@ -33,6 +33,39 @@
 															</form>
 														</div>
 								 </mat-tab>
+
+								 <mat-tab label="Креирај нов профил">
+								<div style="margin-top: 20px;">
+									<div class="alert alert-info" *ngIf="emailSent">Испратена е e-mail порака. Ве молиме потврдете го вашиот профил и подоцна променета ја вашата лозинка.</div>
+									<form (ngSubmit)="onNewAccount()">
+										<div class="form-group">
+											<label for="newUsername">Корисничко име *</label>&nbsp;<span *ngIf="usernameExists" style="color:red;">Корисничкото име веќе постои.</span>
+											<input type="text" class="form-control" id="newUsername" name="username" [(ngModel)]="username" required="required" >
+											<p style="color:#828282;">Внесете го вашето корисничко име</p>
+										</div>
+										<div class="form-group">
+											<label for="email">E-mail адреса *</label>&nbsp;<span *ngIf="emailExists" style="color:red;">Адресата веќе постои.</span>
+											<input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" required="required" >
+											<p style="color:#828282;">Внесете ја вашата e-mail адреса.</p>
+										</div>
+										<button mat-raised-button type="submit" class="mat-primary">Креирај нов профил</button>
+									</form>
+								</div>
+							</mat-tab>
+							<mat-tab label="Заборавена лозинка">
+								<div style="margin-top: 20px;">
+									<div class="alert alert-info" *ngIf="emailNotExists">E-mail адресата на постои.</div>
+									<div class="alert alert-success" *ngIf="forgetPasswordEmailSent">Email sent.</div>
+									<form (ngSubmit)="onForgetPassword()">
+										<div class="form-group">
+											<label for="recoverEmail">Вашата e-mail адреса *</label>
+											<input type="email" class="form-control" id="recoverEmail" name="recoverEmail" [(ngModel)]="recoverEmail" required="required" >
+											<p style="color:#828282;">Внесете ја вашата e-mail адреса.</p>
+										</div>
+										<button mat-raised-button type="submit" class="mat-primary">Submit</button>
+									</form>
+								</div>
+							</mat-tab>
 						</mat-tab-group>
 					</div>
 				</div>
