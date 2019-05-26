@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public class Authority implements GrantedAuthority, Serializable {
 
-    private static final long serialUID = 555666L;
+    private static final long serialVersionUID = 3562825123123680034L;
 
     private final String authority;
 

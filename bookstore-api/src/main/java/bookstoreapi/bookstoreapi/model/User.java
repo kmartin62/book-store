@@ -19,7 +19,7 @@ import java.util.Set;
 @Entity
 public class User implements UserDetails, Serializable {
 
-    private static final long serialUID = 666999L;
+    private static final long serialVersionUID = 5601542970374816899L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -50,6 +50,9 @@ public class User implements UserDetails, Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserPayment> userPaymentList;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<UserShipping> userShippingList;
 
     public Long getId() {
         return id;
@@ -109,6 +112,15 @@ public class User implements UserDetails, Serializable {
 
     public void setUserRoles(Set<UserRole> userRoles) {
         this.userRoles = userRoles;
+    }
+
+
+    public List<UserShipping> getUserShippingList() {
+        return userShippingList;
+    }
+
+    public void setUserShippingList(List<UserShipping> userShippingList) {
+        this.userShippingList = userShippingList;
     }
 
     @Override

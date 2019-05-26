@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Entity
 @Table(name="user_role")
 public class UserRole implements Serializable {
-    private static final long serialUID = 123123L;
+    private static final long serialVersionUID = -6647608864601814694L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -3,6 +3,7 @@ package bookstoreapi.bookstoreapi.service;
 import bookstoreapi.bookstoreapi.model.User;
 import bookstoreapi.bookstoreapi.model.UserBilling;
 import bookstoreapi.bookstoreapi.model.UserPayment;
+import bookstoreapi.bookstoreapi.model.UserShipping;
 import bookstoreapi.bookstoreapi.model.security.UserRole;
 
 import java.util.Optional;
@@ -28,5 +29,9 @@ public interface UserService {
     void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user);
 
     void setUserDefaultPayment(Long userPaymentId, User user);
+
+    void updateUserShipping(UserShipping userShipping, User user);
+
+    void setUserDefaultShipping(Long userShippingId, User user);
 
 }
