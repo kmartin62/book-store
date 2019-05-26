@@ -1,6 +1,8 @@
 package bookstoreapi.bookstoreapi.service;
 
 import bookstoreapi.bookstoreapi.model.User;
+import bookstoreapi.bookstoreapi.model.UserBilling;
+import bookstoreapi.bookstoreapi.model.UserPayment;
 import bookstoreapi.bookstoreapi.model.security.UserRole;
 
 import java.util.Optional;
@@ -20,5 +22,11 @@ public interface UserService {
     User save(User user);
 
     Optional<User> findById(Long id) throws Exception;
+
+    void updateUserPaymentInfo(UserBilling userBilling, UserPayment userPayment, User user);
+
+    void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user);
+
+    void setUserDefaultPayment(Long userPaymentId, User user);
 
 }

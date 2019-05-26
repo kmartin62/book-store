@@ -4,6 +4,9 @@ import { UserService } from '../../services/user.service';
 import { LoginService } from '../../services/login.service';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
+import { PaymentService } from '../../services/payment.service';
+import { UserPayment } from '../../models/user-payment';
+import { UserBilling } from '../../models/user-billing';
 
 @Component({
   selector: 'app-my-profile',
@@ -12,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class MyProfileComponent implements OnInit {
 
-  private serverPath = AppConst.serverPath;
+	private serverPath = AppConst.serverPath;
 	private dataFetched = false;
 	private loginError:boolean;
 	private loggedIn:boolean;
@@ -22,10 +25,28 @@ export class MyProfileComponent implements OnInit {
 	private updateSuccess: boolean;
 	private newPassword: string;
 	private incorrectPassword: boolean;
-  private currentPassword: string;
+	private currentPassword: string;
+  private stateList: string[] = [];
 
-  constructor(private loginService: LoginService, private userService: UserService,
-  private router: Router) { }
+	private selectedProfileTab: number = 0;
+	private selectedBillingTab: number = 0;
+
+	private userPayment: UserPayment = new UserPayment();
+	private userBilling: UserBilling = new UserBilling();
+	private userPaymentList: UserPayment[] =[];
+	private defaultPaymentSet:boolean;
+	private defaultUserPaymentId: number;
+
+  constructor(
+  	private loginService: LoginService,
+  	private userService: UserService,
+  	private paymentService: PaymentService,
+  	private router: Router
+  	) { }
+
+  selectedBillingChange(val: number) {
+  	this.selectedBillingTab = val;
+  }
 
   onUpdateUserInfo () {
   	this.userService.updateUserInfo(this.user, this.newPassword, this.currentPassword).subscribe(
@@ -45,6 +66,15 @@ export class MyProfileComponent implements OnInit {
   	this.userService.getCurrentUser().subscribe(
   		res => {
   			this.user = res.json();
+        this.userPaymentList = this.user.userPaymentList;
+
+        for(let index in this.userPaymentList) {
+          if(this.userPaymentList[index].defaultPayment){
+            this.defaultUserPaymentId = this.userPaymentList[index].id;
+            break;
+          }
+        }
+
   			this.dataFetched = true;
   		},
   		err => {
@@ -53,27 +83,74 @@ export class MyProfileComponent implements OnInit {
   	);
   }
 
-  ngOnInit() {
-    this.loginService.checkSession().subscribe(
-      res => {
-        this.loggedIn = true;
-      },
-      err => {
-        console.log(err.text());
-        this.loggedIn = false;
-        this.router.navigate(['/', 'myAccount']);
-      }
-    );
 
-    this.getCurrentUser();
+
+  onNewPayment() {
+  	this.paymentService.newPayment(this.userPayment).subscribe(
+  		res => {
+  			this.getCurrentUser();
+  			this.selectedBillingTab = 0;
+  		},
+  		error => {
+  			console.log(error.text());
+  		}
+  	);
   }
 
-  // onNewPayment(){
-  //   this.paymentService.newPayment(this.userPayment).subscribe({
-  //     res => {
-  //
-  //     }
-  //   })
-  // }
+  onUpdatePayment (payment: UserPayment) {
+  	this.userPayment = payment;
+  	this.userBilling = payment.userBilling;
+  	this.selectedBillingTab = 1;
+  }
+
+  onRemovePayment(id:number) {
+  	this.paymentService.removePayment(id).subscribe(
+  		res => {
+  			this.getCurrentUser();
+  		},
+  		error => {
+  			console.log(error.text());
+  		}
+  	);
+  }
+
+  setDefaultPayment() {
+  	this.defaultPaymentSet = false;
+  	this.paymentService.setDefaultPayment(this.defaultUserPaymentId).subscribe(
+  		res => {
+  			this.getCurrentUser();
+  			this.defaultPaymentSet = true;
+  		},
+  		error => {
+  			console.log(error.text());
+  		}
+  	);
+  }
+
+  ngOnInit() {
+  	this.loginService.checkSession().subscribe(
+  		res => {
+  			this.loggedIn = true;
+  		},
+  		error => {
+  			this.loggedIn = false;
+  			console.log("inactive session");
+  			this.router.navigate(['/myAccount']);
+  		}
+  	);
+
+  	this.getCurrentUser();
+
+    for (let s in AppConst.usStates) {
+      this.stateList.push(s);
+    }
+
+  	this.userBilling.userBillingState="";
+  	this.userPayment.type="";
+  	this.userPayment.expiryMonth="";
+  	this.userPayment.expiryYear="";
+  	this.userPayment.userBilling = this.userBilling;
+  	this.defaultPaymentSet = false;
+  }
 
 }
