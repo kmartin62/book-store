@@ -1,7 +1,7 @@
 <div class="container">
 	<hr style="position: absolute;width:85%; height:6px; background-color: #333; z-index:-1; margin-top: -170px;" />
 
-	<div *ngIf = "dataFetched" style="margin-top: 50px;">
+	<div *ngIf = "!dataFetched" style="margin-top: 50px;">
 		<div class="row">
 			<div class="col-mat-2 col-mat-offset-5">
 				<mat-spinner></mat-spinner>
@@ -11,7 +11,7 @@
 
 	<div class="row" style="margin-top:30px;">
 		<div class="col-sm-3"></div>
-		<div *ngIf="!dataFetched">
+		<div *ngIf="dataFetched">
 			<div class="col-sm-9">
 				<div class="panel-group">
 					<div class="panel panel-default" style="border:none;">

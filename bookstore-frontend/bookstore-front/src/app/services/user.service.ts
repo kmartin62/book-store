@@ -11,16 +11,16 @@ export class UserService {
 
   constructor(private http: Http) { }
 
-  updateUserInfo(user: User, newPassword: string) {
+  updateUserInfo(user: User, newPassword: string, currentPassword: string) {
     let url = this.serverPath + "/user/updateUserInfo";
     let userInfo = {
       "id" : user.id,
       "firstName" : user.firstName,
       "lastName" : user.lastName,
       "username" : user.username,
-      "currentPassword" : user.password,
+      "currentPassword" : currentPassword,
       "email" : user.email,
-      "newPassword" : "newPassword"
+      "newPassword" : newPassword
     };
 
     let tokenHeader = new Headers({

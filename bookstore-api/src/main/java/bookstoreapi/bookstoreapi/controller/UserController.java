@@ -105,7 +105,8 @@ public class UserController {
         if(newPassword != null && !newPassword.isEmpty() && !newPassword.equals("")) {
             BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
             String dbPassword = currentUser.get().getPassword();
-            if(currentPassword.equals(dbPassword)) {
+
+            if(passwordEncoder.matches(currentPassword, dbPassword)) {
                 currentUser.get().setPassword(passwordEncoder.encode(newPassword));
             } else {
                 return new ResponseEntity("Incorrect current password!", HttpStatus.BAD_REQUEST);
@@ -125,7 +126,7 @@ public class UserController {
     @RequestMapping("/getCurrentUser")
     public User getCurrentUser(Principal principal) {
         User user = new User();
-        if (null != principal) {
+        if (principal != null) {
             user = userService.findByUsername(principal.getName());
         }
 

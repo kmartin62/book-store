@@ -22,12 +22,13 @@ export class MyProfileComponent implements OnInit {
 	private updateSuccess: boolean;
 	private newPassword: string;
 	private incorrectPassword: boolean;
+  private currentPassword: string;
 
   constructor(private loginService: LoginService, private userService: UserService,
   private router: Router) { }
 
   onUpdateUserInfo () {
-  	this.userService.updateUserInfo(this.user, this.newPassword).subscribe(
+  	this.userService.updateUserInfo(this.user, this.newPassword, this.currentPassword).subscribe(
   		res => {
   			console.log(res.text());
   			this.updateSuccess=true;
@@ -63,6 +64,16 @@ export class MyProfileComponent implements OnInit {
         this.router.navigate(['/', 'myAccount']);
       }
     );
+
+    this.getCurrentUser();
   }
+
+  // onNewPayment(){
+  //   this.paymentService.newPayment(this.userPayment).subscribe({
+  //     res => {
+  //
+  //     }
+  //   })
+  // }
 
 }
