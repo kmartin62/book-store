@@ -5,7 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { BookListComponent } from './components/book-list/book-list.component';
-
+import { BookDetailComponent } from './components/book-detail/book-detail.component';
 
 const appRoutes: Routes = [
   {
@@ -28,6 +28,10 @@ const appRoutes: Routes = [
   {
     path: 'bookList',
     component: BookListComponent
+  },
+  {
+    path: 'bookDetail/:id',
+    component: BookDetailComponent
   }
 
 ];
