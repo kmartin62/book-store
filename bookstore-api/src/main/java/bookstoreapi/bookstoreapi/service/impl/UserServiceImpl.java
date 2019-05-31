@@ -5,10 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import bookstoreapi.bookstoreapi.model.User;
-import bookstoreapi.bookstoreapi.model.UserBilling;
-import bookstoreapi.bookstoreapi.model.UserPayment;
-import bookstoreapi.bookstoreapi.model.UserShipping;
+import bookstoreapi.bookstoreapi.model.*;
 import bookstoreapi.bookstoreapi.model.security.UserRole;
 import bookstoreapi.bookstoreapi.repository.*;
 import bookstoreapi.bookstoreapi.service.UserService;
@@ -58,7 +55,12 @@ public class UserServiceImpl implements UserService {
 
             user.getUserRoles().addAll(userRoles);
 
+            ShoppingCart shoppingCart = new ShoppingCart();
+            shoppingCart.setUser(user);
+            user.setShoppingCart(shoppingCart);
+
             user.setUserPaymentList(new ArrayList<UserPayment>());
+            user.setUserShippingList(new ArrayList<UserShipping>());
 
             user1 = userRepository.save(user);
         }
