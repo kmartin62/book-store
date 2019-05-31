@@ -29,7 +29,7 @@
       					<div class="row" style="margin-bottom: 30px;">
       						<div class="col-md-3">
       							<a (click)="onSelect(book)" style="cursor:pointer;">
-      								<img class="img-responsive" src="{{serverPath}}/image/book/{{book.id}}.png" />
+      								<img [src]="'http://localhost:8080/image/book/'+book.id+'.png'" class="responsive-img" style="width: 210px"/>
       							</a>
       						</div>
       						<div class="col-md-9">

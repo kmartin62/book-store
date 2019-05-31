@@ -50,7 +50,7 @@ public class BookController {
             String fileName = id+".png";
 
             byte[] bytes = multipartFile.getBytes();
-            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static.image.book/"+fileName)));
+            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static/image/book/"+fileName)));
             stream.write(bytes);
             stream.close();
 
@@ -101,7 +101,7 @@ public class BookController {
         Optional<Book> book = bookService.findById(id);
         String fileName = id+".png";
 
-        Files.delete(Paths.get("src/main/resources/static/image/book/"+fileName));
+//        Files.delete(Paths.get("src/main/resources/static/image/book/"+fileName));
         return book;
     }
 
