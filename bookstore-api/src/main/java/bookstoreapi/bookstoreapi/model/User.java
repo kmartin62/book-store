@@ -54,6 +54,9 @@ public class User implements UserDetails, Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserShipping> userShippingList;
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private ShoppingCart shoppingCart;
+
     public Long getId() {
         return id;
     }
@@ -128,6 +131,14 @@ public class User implements UserDetails, Serializable {
         Set<GrantedAuthority> authorities = new HashSet<>();
         userRoles.forEach(x -> authorities.add(new Authority(x.getRole().getName())));
         return authorities;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 
     @Override
