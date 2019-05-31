@@ -7,7 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { AlertModule } from 'ngx-bootstrap';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DataTableModule } from "angular2-datatable";
+import { DataFilterPipe } from './components/book-list/data-filter.pipe';
 
 import 'hammerjs';
 
@@ -15,6 +17,7 @@ import { LoginService } from './services/login.service';
 import { UserService } from './services/user.service';
 import { PaymentService } from './services/payment.service';
 import { ShippingService } from './services/shipping.service';
+import { BookService } from './services/book.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +25,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { BookListComponent } from './components/book-list/book-list.component';
 
 
 @NgModule({
@@ -30,7 +34,9 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
     HomeComponent,
     NavBarComponent,
     MyAccountComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    BookListComponent,
+    DataFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,8 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
     AlertModule.forRoot(),
     MatTabsModule,
     BrowserAnimationsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    DataTableModule
   ],
   providers: [
     LoginService,

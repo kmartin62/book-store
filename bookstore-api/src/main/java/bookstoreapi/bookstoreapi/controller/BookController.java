@@ -50,7 +50,7 @@ public class BookController {
             String fileName = id+".png";
 
             byte[] bytes = multipartFile.getBytes();
-            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static/image/book/"+fileName)));
+            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static.image.book/"+fileName)));
             stream.write(bytes);
             stream.close();
 
