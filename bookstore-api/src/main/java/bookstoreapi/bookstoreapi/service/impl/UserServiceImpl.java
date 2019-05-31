@@ -8,11 +8,9 @@ import java.util.Set;
 import bookstoreapi.bookstoreapi.model.User;
 import bookstoreapi.bookstoreapi.model.UserBilling;
 import bookstoreapi.bookstoreapi.model.UserPayment;
+import bookstoreapi.bookstoreapi.model.UserShipping;
 import bookstoreapi.bookstoreapi.model.security.UserRole;
-import bookstoreapi.bookstoreapi.repository.RoleRepository;
-import bookstoreapi.bookstoreapi.repository.UserBillingRepository;
-import bookstoreapi.bookstoreapi.repository.UserPaymentRepository;
-import bookstoreapi.bookstoreapi.repository.UserRepository;
+import bookstoreapi.bookstoreapi.repository.*;
 import bookstoreapi.bookstoreapi.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,13 +32,17 @@ public class UserServiceImpl implements UserService {
 
     private UserPaymentRepository userPaymentRepository;
 
+    private UserShippingRepository userShippingRepository;
+
     @Autowired
     public UserServiceImpl(RoleRepository roleRepository, UserRepository userRepository,
-                           UserBillingRepository userBillingRepository, UserPaymentRepository userPaymentRepository) {
+                           UserBillingRepository userBillingRepository, UserPaymentRepository userPaymentRepository,
+                           UserShippingRepository userShippingRepository) {
         this.roleRepository = roleRepository;
         this.userRepository = userRepository;
         this.userBillingRepository = userBillingRepository;
         this.userPaymentRepository = userPaymentRepository;
+        this.userShippingRepository = userShippingRepository;
     }
 
     @Transactional
@@ -113,6 +115,29 @@ public class UserServiceImpl implements UserService {
             } else {
                 userPayment.setDefaultPayment(false);
                 userPaymentRepository.save(userPayment);
+            }
+        }
+    }
+
+    @Override
+    public void updateUserShipping(UserShipping userShipping, User user) {
+        userShipping.setUser(user);
+        userShipping.setUserShippingDefault(true);
+        user.getUserShippingList().add(userShipping);
+        save(user);
+    }
+
+    @Override
+    public void setUserDefaultShipping(Long userShippingId, User user) {
+        List<UserShipping> userShippingList = (List<UserShipping>) userShippingRepository.findAll();
+
+        for (UserShipping userShipping : userShippingList) {
+            if(userShipping.getId() == userShippingId) {
+                userShipping.setUserShippingDefault(true);
+                userShippingRepository.save(userShipping);
+            } else {
+                userShipping.setUserShippingDefault(false);
+                userShippingRepository.save(userShipping);
             }
         }
     }

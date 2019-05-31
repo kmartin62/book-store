@@ -12,7 +12,7 @@ import java.util.Set;
 @Entity
 public class Role implements Serializable {
 
-    private static final long serialUID = 556655L;
+    private static final long serialVersionUID = 95996601020642916L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

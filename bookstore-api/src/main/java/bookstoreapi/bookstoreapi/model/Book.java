@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 @Entity
 public class Book implements Serializable {
-    private static final long serialID = 34124124L;
+    private static final long serialVersionUID=425345L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
