@@ -109,4 +109,11 @@ public class BookController {
     public Book updateBook(@RequestBody Book book) {
         return bookService.save(book);
     }
+
+    @RequestMapping(value="/searchBook", method=RequestMethod.POST)
+    public List<Book> searchBook (@RequestBody String keyword) {
+        List<Book> bookList = bookService.findByTitle(keyword);
+
+        return bookList;
+    }
 }

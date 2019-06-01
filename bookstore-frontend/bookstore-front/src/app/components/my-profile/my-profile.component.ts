@@ -9,6 +9,8 @@ import { UserPayment } from '../../models/user-payment';
 import { UserBilling } from '../../models/user-billing';
 import { UserShipping } from '../../models/user-shipping';
 import { ShippingService } from '../../services/shipping.service';
+import { Order } from '../../models/order';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -46,11 +48,16 @@ export class MyProfileComponent implements OnInit {
   private defaultUserShippingId: number;
   private defaultShippingSet: boolean;
 
+  private orderList: Order[] = [];
+  private order: Order = new Order();
+  private displayOrderDetail: boolean;
+
 
   constructor(
   	private loginService: LoginService,
   	private userService: UserService,
   	private paymentService: PaymentService,
+    private orderService: OrderService,
   	private router: Router,
     private shippingService: ShippingService
   	) { }
@@ -191,6 +198,12 @@ export class MyProfileComponent implements OnInit {
   	);
   }
 
+  onDisplayOrder(order: Order) {
+   console.log(order);
+   this.order=order;
+   this.displayOrderDetail=true;
+ }
+
   ngOnInit() {
   	this.loginService.checkSession().subscribe(
   		res => {
@@ -204,6 +217,13 @@ export class MyProfileComponent implements OnInit {
   	);
 
   	this.getCurrentUser();
+
+    this.orderService.getOrderList().subscribe(res => {
+        this.orderList = res.json();
+    },
+  err => {
+    console.log(err.text());
+  });
 
     for (let s in AppConst.usStates) {
       this.stateList.push(s);
